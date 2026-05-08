@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tito Meana Properties</title>
+  <style>
+    :root{
+      --bg:#f7f5f1;
+      --text:#111111;
+      --muted:#6f6f6f;
+      --line:#ddd7cf;
+      --black:#111111;
+      --white:#ffffff;
+      --accent:#b99a63;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    h1,h2,h3{
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight:400;
+      letter-spacing:.03em;
+    }
+    a{text-decoration:none;color:inherit}
+    header{
+      height:76px;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 7vw;
+      position:sticky;
+      top:0;
+      z-index:10;
+      border-bottom:1px solid #eee;
+    }
+    .logo{
+      font-size:25px;
+      letter-spacing:.16em;
+      line-height:1;
+    }
+    .logo small{
+      display:block;
+      font-size:10px;
+      letter-spacing:.55em;
+      margin-top:8px;
+      text-align:center;
+    }
+    nav{
+      display:flex;
+      gap:34px;
+      font-size:12px;
+      font-weight:700;
+    }
+    .wa{
+      background:#111;
+      color:white;
+      padding:16px 24px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+    }
+    .menu-btn{display:none;font-size:28px}
+    .hero{
+      min-height:720px;
+      position:relative;
+      background:
+        linear-gradient(90deg, rgba(247,245,241,.92) 0%, rgba(247,245,241,.72) 35%, rgba(247,245,241,.1) 62%),
+        url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      padding:110px 7vw 0;
+    }
+    .hero h1{
+      font-size:58px;
+      max-width:520px;
+      margin:0 0 28px;
+      line-height:1.08;
+    }
+    .dash{
+      width:32px;
+      height:2px;
+      background:var(--accent);
+      margin:0 0 26px;
+    }
+    .hero p{
+      font-size:18px;
+      line-height:1.8;
+      max-width:440px;
+      color:#333;
+    }
+    .btn{
+      display:inline-block;
+      background:#111;
+      color:white;
+      padding:18px 36px;
+      margin-top:18px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      border:none;
+      cursor:pointer;
+    }
+    .benefits{
+      position:absolute;
+      left:7vw;
+      bottom:92px;
+      display:flex;
+      gap:24px;
+      color:white;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-shadow:0 2px 10px rgba(0,0,0,.4);
+    }
+    .benefit{
+      border-right:1px solid rgba(255,255,255,.6);
+      padding-right:24px;
+    }
+    .benefit:last-child{border-right:0}
+    .search{
+      background:white;
+      margin:-48px auto 0;
+      width:86%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr 190px;
+      gap:24px;
+      padding:26px;
+      position:relative;
+      z-index:3;
+      box-shadow:0 12px 35px rgba(0,0,0,.08);
+    }
+    label{
+      display:block;
+      color:#8a8a8a;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.06em;
+      margin-bottom:10px;
+    }
+    select{
+      width:100%;
+      border:none;
+      border-bottom:1px solid var(--line);
+      padding:10px 0;
+      background:white;
+      font-size:14px;
+    }
+    .section{
+      padding:80px 7vw;
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      margin-bottom:30px;
+    }
+    .eyebrow{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:#333;
+      margin-bottom:16px;
+    }
+    .section h2{
+      font-size:38px;
+      margin:0;
+      max-width:460px;
+      line-height:1.15;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .card{
+      min-height:250px;
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      background:#ddd;
+    }
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position:absolute;
+      inset:0;
+      transition:.4s;
+    }
+    .card:hover img{transform:scale(1.05)}
+    .card:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.08));
+    }
+    .card-text{
+      position:absolute;
+      bottom:24px;
+      left:20px;
+      right:20px;
+      z-index:2;
+      color:white;
+      text-align:center;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.07em;
+    }
+    .about{
+      background:white;
+      display:grid;
+      grid-template-columns:330px 1fr 260px;
+      gap:44px;
+      align-items:center;
+    }
+    .about img{
+      width:100%;
+      border-radius:2px;
+    }
+    .about p{
+      line-height:1.8;
+      color:#555;
+    }
+    .signature{
+      font-family: Georgia, serif;
+      font-size:34px;
+      font-style:italic;
+      margin-top:14px;
+    }
+    .features{
+      border-left:1px solid var(--line);
+    }
+    .feature{
+      padding:28px 0 28px 36px;
+      border-bottom:1px solid var(--line);
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.06em;
+    }
+    .property-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+    .property{
+      background:white;
+      overflow:hidden;
+      box-shadow:0 8px 25px rgba(0,0,0,.06);
+    }
+    .property img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+    }
+    .property-content{padding:22px}
+    .property h3{
+      font-size:24px;
+      margin:0 0 8px;
+    }
+    .price{
+      font-weight:800;
+      margin-top:12px;
+    }
+    .floating-wa{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      background:#111;
+      color:white;
+      padding:15px 18px;
+      border-radius:40px;
+      z-index:20;
+      font-size:13px;
+      font-weight:800;
+      box-shadow:0 10px 25px rgba(0,0,0,.25);
+    }
+    footer{
+      background:#111;
+      color:white;
+      padding:40px 7vw;
+      text-align:center;
+      font-size:13px;
+    }
+
+    @media(max-width:900px){
+      header{padding:0 22px;height:68px}
+      nav,.header-wa{display:none}
+      .menu-btn{display:block}
+      .logo{font-size:20px}
+      .logo small{font-size:8px}
+      .hero{
+        min-height:650px;
+        padding:80px 24px 0;
+        background:
+          linear-gradient(180deg, rgba(247,245,241,.95) 0%, rgba(247,245,241,.82) 42%, rgba(247,245,241,.12) 100%),
+          url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      }
+      .hero h1{
+        font-size:43px;
+        max-width:350px;
+      }
+      .hero p{
+        font-size:16px;
+        max-width:320px;
+      }
+      .benefits{
+        display:none;
+      }
+      .search{
+        width:calc(100% - 32px);
+        grid-template-columns:1fr;
+        margin:-36px 16px 0;
+        padding:20px;
+      }
+      .btn{width:100%;text-align:center}
+      .section{padding:60px 22px}
+      .section-head{display:block}
+      .section h2{font-size:32px}
+      .cards{grid-template-columns:1fr 1fr}
+      .card{min-height:190px}
+      .about{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .features{border-left:none}
+      .feature{padding-left:0}
+      .property-grid{grid-template-columns:1fr}
+      .floating-wa{
+        right:14px;
+        bottom:14px;
+      }
+    }
+
+    @media(max-width:480px){
+      .hero h1{font-size:38px}
+      .cards{grid-template-columns:1fr}
+      .section h2{font-size:30px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo">TITO MEANA<small>PROPERTIES</small></a>
+  <nav>
+    <a href="#">INICIO</a>
+    <a href="#propiedades">PROPIEDADES</a>
+    <a href="#sobre-mi">SOBRE MÍ</a>
+    <a href="#servicios">SERVICIOS</a>
+    <a href="#contacto">CONTACTO</a>
+  </nav>
+  <a class="wa header-wa" href="https://wa.me/50760000000">WHATSAPP</a>
+  <div class="menu-btn">☰</div>
+</header>
+
+<section class="hero">
+  <h1>BIENES RAÍCES EN PANAMÁ</h1>
+  <div class="dash"></div>
+  <p>Te ayudo a encontrar la propiedad correcta para vivir o invertir con seguridad y confianza.</p>
+  <a class="btn" href="#propiedades">VER PROPIEDADES</a>
+
+  <div class="benefits">
+    <div class="benefit">ASESORÍA<br>PERSONALIZADA</div>
+    <div class="benefit">EXPERIENCIA<br>Y CONFIANZA</div>
+    <div class="benefit">PROPIEDADES<br>EXCLUSIVAS</div>
+  </div>
+</section>
+
+<section class="search">
+  <div>
+    <label>TIPO DE PROPIEDAD</label>
+    <select>
+      <option>Todos</option>
+      <option>Apartamentos</option>
+      <option>Casas</option>
+      <option>Playa y campo</option>
+    </select>
+  </div>
+  <div>
+    <label>UBICACIÓN</label>
+    <select>
+      <option>Todas las zonas</option>
+      <option>Costa del Este</option>
+      <option>Santa María</option>
+      <option>San Francisco</option>
+      <option>Buenaventura</option>
+    </select>
+  </div>
+  <div>
+    <label>PRECIO</label>
+    <select>
+      <option>Cualquier precio</option>
+      <option>Hasta $250,000</option>
+      <option>$250,000 - $500,000</option>
+      <option>$500,000+</option>
+    </select>
+  </div>
+  <button class="btn" onclick="document.querySelector('#propiedades').scrollIntoView({behavior:'smooth'})">BUSCAR</button>
+</section>
+
+<section class="section" id="propiedades">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">PROPIEDADES DESTACADAS</div>
+      <h2>Encuentra tu próximo lugar en Panamá</h2>
+    </div>
+    <a href="#">VER TODAS →</a>
+  </div>
+
+  <div class="cards">
+    <div class="card"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80"><div class="card-text">APARTAMENTOS<br>EN VENTA</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80"><div class="card-text">CASAS<br>EN VENTA</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=80"><div class="card-text">PLAYA Y CAMPO<br>EN VENTA</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80"><div class="card-text">INVERSIONES<br>ALTA RENTABILIDAD</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="property-grid">
+    <div class="property">
+      <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=80">
+      <div class="property-content">
+        <h3>Apartamento frente al mar</h3>
+        <p>Costa del Este · 3 recámaras · 3.5 baños</p>
+        <div class="price">$485,000</div>
+      </div>
+    </div>
+    <div class="property">
+      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80">
+      <div class="property-content">
+        <h3>Casa familiar moderna</h3>
+        <p>Santa María · 4 recámaras · jardín</p>
+        <div class="price">$790,000</div>
+      </div>
+    </div>
+    <div class="property">
+      <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=900&q=80">
+      <div class="property-content">
+        <h3>Inversión en ciudad</h3>
+        <p>San Francisco · renta activa · alta demanda</p>
+        <div class="price">$285,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="sobre-mi">
+  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80" alt="Tito Meana">
+  <div>
+    <div class="eyebrow">SOBRE MÍ</div>
+    <h2>Tu aliado en bienes raíces</h2>
+    <p>Más de 8 años de experiencia ayudando a personas e inversionistas a comprar y vender propiedades en Panamá.</p>
+    <p>Mi compromiso es brindarte una asesoría transparente, personalizada y enfocada en tus objetivos.</p>
+    <div class="signature">Tito Meana</div>
+    <p>Licencia PN-4420</p>
+    <a class="btn" href="#contacto">CONOCER MÁS</a>
+  </div>
+  <div class="features" id="servicios">
+    <div class="feature">ASESORÍA PERSONALIZADA</div>
+    <div class="feature">EXPERIENCIA COMPROBADA</div>
+    <div class="feature">COMPROMISO Y CONFIANZA</div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <h2>Tito Meana Properties</h2>
+  <p>Bienes raíces en Panamá · Compra · Venta · Inversión</p>
+  <p>WhatsApp: +507 6000-0000</p>
+</footer>
+
+<a class="floating-wa" href="https://wa.me/50760000000?text=Hola%20Tito,%20me%20interesa%20una%20propiedad">WhatsApp</a>
+
+<script>
+  document.querySelector('.menu-btn').addEventListener('click', () => {
+    alert('Aquí podemos abrir un menú móvil completo. Esta demo ya está lista para conectarlo.');
+  });
+</script>
+
+</body>
+</html>
